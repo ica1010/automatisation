@@ -1,6 +1,6 @@
 import unittest
 from main import tokenize
-import unittest  # Importation du module de test unitaire
+import unittest  # Importation du module de test 
 
 class TestLexer(unittest.TestCase):
 
