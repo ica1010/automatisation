@@ -1,2 +1,60 @@
+### Rapport d'Analyseur Lexical
+
+#### Introduction
+
+Ce projet vise à développer un analyseur lexical capable d'identifier les identificateurs, nombres entiers et opérateurs arithmétiques dans une chaîne de caractères. L'analyseur lexical transforme une chaîne d'entrée en une liste de tokens, ce qui facilite les étapes suivantes de l'analyse syntaxique et sémantique.
+
+#### Approche
+
+L'approche utilisée pour construire l'analyseur lexical repose sur les expressions régulières. Les principales étapes de cette approche sont les suivantes :
+
+1. **Définition des Tokens** : Les différents types de tokens (nombres, identifiants, opérateurs, parenthèses, espaces/tabulations, et caractères inconnus) sont définis à l'aide d'expressions régulières.
+2. **Construction d'une Expression Régulière Globale** : Toutes les expressions régulières sont combinées en une seule expression globale permettant de reconnaître chaque type de token dans l'ordre de leur définition.
+3. **Tokenisation** : La chaîne d'entrée est analysée en utilisant l'expression régulière globale. Les correspondances trouvées sont converties en tokens correspondants.
+4. **Tests** : Des cas de test sont définis pour vérifier que l'analyseur lexical fonctionne correctement pour différentes expressions.
+
+#### Défis Rencontrés
+
+1. **Gestion des Espaces et Tabulations** :
+    - **Problème** : Les espaces et tabulations sont des caractères à ignorer mais peuvent apparaître en multiples exemplaires dans l'entrée.
+    - **Solution** : Une expression régulière `[ \t]+` a été utilisée pour reconnaître et ignorer tous les espaces et tabulations dans la chaîne d'entrée.
+
+2. **Reconnaissance des Caractères Inconnus** :
+    - **Problème** : Il est crucial de gérer les caractères qui ne correspondent à aucun des tokens définis pour éviter les erreurs silencieuses.
+    - **Solution** : Un token `Expression_inconnue` a été défini pour capturer tout caractère non reconnu. Une exception est levée pour indiquer la présence d'un tel caractère.
+
+3. **Erreurs Typographiques dans les Noms de Tokens** :
+    - **Problème** : Des fautes de frappe dans les noms des tokens ont provoqué des erreurs de correspondance.
+    - **Solution** : Les fautes de frappe ont été corrigées (`Identifient` à `Identifiant` et `Parenthse_fermente` à `Parenthese_fermante`).
+
+#### Solutions Apportées
+
+1. **Correction des Noms de Tokens** :
+    - Les noms des tokens ont été corrigés pour correspondre à la sémantique prévue.
+
+2. **Expression Régulière Globale** :
+    - Les expressions régulières individuelles ont été correctement combinées en une seule expression globale pour une analyse cohérente de la chaîne d'entrée.
+
+3. **Ignoration des Espaces et Tabulations** :
+    - Une expression régulière dédiée a été utilisée pour ignorer efficacement les espaces et tabulations dans l'entrée.
+
+4. **Gestion des Caractères Inconnus** :
+    - Un token dédié a été ajouté pour gérer les caractères inconnus, avec levée d'exception pour informer l'utilisateur.
+
+#### Tests et Validation
+
+Une fonction de test `test_tokenize` a été implémentée pour vérifier le bon fonctionnement de l'analyseur lexical. Plusieurs cas de test ont été définis, chacun vérifiant une partie spécifique de la fonctionnalité de l'analyseur :
+
+- Reconnaissance des identifiants et opérateurs.
+- Reconnaissance des parenthèses.
+- Gestion correcte des espaces et tabulations.
+- Identification des nombres entiers.
+
+Tous les cas de test ont été exécutés avec succès, confirmant que l'analyseur lexical fonctionne comme prévu.
+
+#### Conclusion
+
+Le développement de cet analyseur lexical a permis de transformer efficacement une chaîne d'entrée en une liste de tokens identifiables. Les défis rencontrés ont été résolus par des solutions adaptées, assurant la robustesse et la fiabilité de l'analyseur. Les tests ont validé la fonctionnalité correcte de l'outil, garantissant ainsi sa capacité à traiter diverses expressions en entrée. 
+
 fait par :
 AMETONOU Kossi Ghislin et Chardey Koffi Carmel
